@@ -1,5 +1,5 @@
-KERNEL := $(shell uname -s)
-MACHINE := $(shell uname -i)
+KERNEL := $(shell uname -o)
+MACHINE := $(shell uname -m)
 TARGET := $(KERNEL)-$(MACHINE)
 
 PORT = 8765
