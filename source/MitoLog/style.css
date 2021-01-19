@@ -1,0 +1,19 @@
+body
+  {
+    font-family : sans-serif;
+  }
+
+.title
+  {
+    font-size : 12pt;
+    font-weight : bold;
+    border-bottom-style : solid;
+    border-bottom-width : 2pt;
+    margin-bottom : 10px;
+  }
+
+.diagram
+  {
+    border : none;
+  }
+

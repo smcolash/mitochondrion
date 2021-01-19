@@ -1,0 +1,38 @@
+Enhabcements
+- add title with each URL
+- add all URLs to the RSS feed
+- finish the XML output for the history data
+- add visibility attribute to the web services
+- RSS feed does not seem correct or useful?
+
+History Diagrams
+- Allow 'dragging' of the swim-lanes to reorder actors
+- Enable some form of visual feedback when dragging
+- enable simplified editing (delete above, delete below...)
+- Add alarm status to swim lane timeline
+
+Association Diagrams
+- Add graphical notation
+- Add notation of 'alarm' status to display
+
+General
+- check on how thr RSS view looks using other aggregators...
+
+Execution
+- timer and fd queue do not shut down when main queue shuts down
+- need mechanism to control all queues from single point of control
+
+Messaging
+- need to address actor-based callbacks from web interface/callback
+  * fixed, example working in ping/pong
+
+Bugs
+- Linux target does not (reliably) act on timeout events.
+- Windows (Cygwin) crashes on shutdown from web callback.
+
+Interfaces and Portability
+- Windows does not allow the use of templates in interfaces
+
+Ports
+- Un-connected ports crash the system if a message is sent to them.
+
