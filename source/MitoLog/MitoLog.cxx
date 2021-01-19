@@ -461,12 +461,12 @@ int MitoLog::add (const std::string &label, const std::string &actor,
     MitoLogRecord record;
 
     record.timestamp = timestamp ();
-    strncpy (record.label, label.c_str (),
-        sizeof (record.label) - 1);
-    strncpy (record.actor, actor.c_str (),
-        sizeof (record.actor) - 1);
-    strncpy (record.data.text, text,
-        sizeof (record.data.text) - 1);
+    strlcpy (record.label, label.c_str (),
+        sizeof (record.label));
+    strlcpy (record.actor, actor.c_str (),
+        sizeof (record.actor));
+    strlcpy (record.data.text, text,
+        sizeof (record.data.text));
 
     //
     // copy the data into the trace buffer
@@ -514,8 +514,8 @@ int MitoLog::text (const std::string &actor, const char *format, ...)
     // create a record to insert into the log data
     //
     MitoLogRecord record (MitoLogRecord::TEXT, actor);
-    strncpy (record.data.text, text,
-        sizeof (record.data.text) - 1);
+    strlcpy (record.data.text, text,
+        sizeof (record.data.text));
 
     //
     // copy the data into the trace buffer
@@ -539,10 +539,10 @@ int MitoLog::transition (const std::string &actor, int code,
     const std::string &from, const std::string &to)
   {
     MitoLogRecord record (MitoLogRecord::STATE, actor);
-    strncpy (record.data.state.from, from.c_str (),
-        sizeof (record.data.state.from) - 1);
-    strncpy (record.data.state.to, to.c_str (),
-        sizeof (record.data.state.to) - 1);
+    strlcpy (record.data.state.from, from.c_str (),
+        sizeof (record.data.state.from));
+    strlcpy (record.data.state.to, to.c_str (),
+        sizeof (record.data.state.to));
 
     //
     // copy the data into the trace buffer
@@ -583,10 +583,10 @@ int MitoLog::event (const std::string &actor, int code,
         //
         MitoLogRecord record (MitoLogRecord::EVENT_RECEIVE, actor);
         record.data.event.code = code;
-        strncpy (record.data.event.from, from.c_str (),
-            sizeof (record.data.event.from) - 1);
-        strncpy (record.data.event.to, to.c_str (),
-            sizeof (record.data.event.to) - 1);
+        strlcpy (record.data.event.from, from.c_str (),
+            sizeof (record.data.event.from));
+        strlcpy (record.data.event.to, to.c_str (),
+            sizeof (record.data.event.to));
 
         //
         // copy the data into the trace buffer
@@ -600,10 +600,10 @@ int MitoLog::event (const std::string &actor, int code,
         //
         MitoLogRecord record (MitoLogRecord::EVENT_SEND, actor);
         record.data.event.code = code;
-        strncpy (record.data.event.from, from.c_str (),
-            sizeof (record.data.event.from) - 1);
-        strncpy (record.data.event.to, to.c_str (),
-            sizeof (record.data.event.to) - 1);
+        strlcpy (record.data.event.from, from.c_str (),
+            sizeof (record.data.event.from));
+        strlcpy (record.data.event.to, to.c_str (),
+            sizeof (record.data.event.to));
 
         //
         // copy the data into the trace buffer
@@ -624,8 +624,8 @@ int MitoLog::timer (const std::string &actor, const std::string &name,
     // create a record to insert into the log data
     //
     MitoLogRecord record (MitoLogRecord::TIMER_SET, actor);
-    strncpy (record.data.timer.name, name.c_str (),
-        sizeof (record.data.timer.name) - 1);
+    strlcpy (record.data.timer.name, name.c_str (),
+        sizeof (record.data.timer.name));
     record.data.timer.value = timeout;
 
     //
@@ -643,8 +643,8 @@ int MitoLog::cancel (const std::string &actor, const std::string &name)
     // create a record to insert into the log data
     //
     MitoLogRecord record (MitoLogRecord::TIMER_CANCEL, actor);
-    strncpy (record.data.timer.name, name.c_str (),
-        sizeof (record.data.timer.name) - 1);
+    strlcpy (record.data.timer.name, name.c_str (),
+        sizeof (record.data.timer.name));
 
     //
     // copy the data into the trace buffer
@@ -661,8 +661,8 @@ int MitoLog::timeout (const std::string &actor, const std::string &name)
     // create a record to insert into the log data
     //
     MitoLogRecord record (MitoLogRecord::TIMER_EXPIRE, actor);
-    strncpy (record.data.timer.name, name.c_str (),
-        sizeof (record.data.timer.name) - 1);
+    strlcpy (record.data.timer.name, name.c_str (),
+        sizeof (record.data.timer.name));
 
     //
     // copy the data into the trace buffer
@@ -691,10 +691,10 @@ int MitoLog::mutex (const std::string &actor, int state,
         record.type = MitoLogRecord::MUTEX_GIVE;
       }
 
-    strncpy (record.actor, actor.c_str (),
-        sizeof (record.actor) - 1);
-    strncpy (record.data.mutex.name, name.c_str (),
-        sizeof (record.data.mutex.name) - 1);
+    strlcpy (record.actor, actor.c_str (),
+        sizeof (record.actor));
+    strlcpy (record.data.mutex.name, name.c_str (),
+        sizeof (record.data.mutex.name));
 
     //
     // copy the data into the trace buffer
@@ -736,8 +736,8 @@ int MitoLog::alarm (const std::string &actor, MitoLogRecord::ALARM_TYPE conditio
           break;
       }
 
-    strncpy (record.actor, actor.c_str (),
-        sizeof (record.actor) - 1);
+    strlcpy (record.actor, actor.c_str (),
+        sizeof (record.actor));
 
     record.data.alarm.condition = condition;
 

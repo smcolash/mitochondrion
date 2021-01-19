@@ -1,4 +1,10 @@
 *.o
 *.a
 *.so
+*.dll
+*.exe
+*.sw*
+tags
 *.data
+html/
+rtf/

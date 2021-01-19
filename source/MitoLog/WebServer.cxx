@@ -182,18 +182,18 @@ int WebServer::default_callback (WebServer *server, const std::string &command,
 
     memset (&response, 0x00, sizeof (response));
 
-    strncat (response, "<html>\n", sizeof (response));
-    strncat (response, "<head>\n", sizeof (response));
-    strncat (response, "<title>404 Not Found</title>\n", sizeof (response));
-    strncat (response, "</head>\n", sizeof (response));
-    strncat (response, "<body>\n", sizeof (response));
-    strncat (response, "<h1>Not Found</h1>\n", sizeof (response));
+    strlcat (response, "<html>\n", sizeof (response));
+    strlcat (response, "<head>\n", sizeof (response));
+    strlcat (response, "<title>404 Not Found</title>\n", sizeof (response));
+    strlcat (response, "</head>\n", sizeof (response));
+    strlcat (response, "<body>\n", sizeof (response));
+    strlcat (response, "<h1>Not Found</h1>\n", sizeof (response));
     sprintf (buffer,
         "The requested URL %s was not found on this server.<P>\n",
         url.c_str ());
-    strncat (response, buffer, sizeof (response));
-    strncat (response, "</body>\n", sizeof (response));
-    strncat (response, "</html>\n", sizeof (response));
+    strlcat (response, buffer, sizeof (response) - 0);
+    strlcat (response, "</body>\n", sizeof (response));
+    strlcat (response, "</html>\n", sizeof (response));
 
     return (server->produce (404, "text/html", "", strlen (response), response));
   }

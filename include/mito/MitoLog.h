@@ -91,7 +91,7 @@ public:
         /**
           * Free-text to describe the event.
           */
-        char text[128];
+        char text[256];
         /**
           * Hold data about a timer or timer event.
           */

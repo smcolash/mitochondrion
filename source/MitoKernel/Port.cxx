@@ -101,7 +101,7 @@ int Port::inject (Event *event)
 
     _mutex->unlock ();
 
-    return (TRUE);
+    return (status);
   }
 
 int Port::send (Event *event)

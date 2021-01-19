@@ -3,6 +3,8 @@
 #include <process.h>
 #else
 #include <time.h>
+#include <pthread.h>
+//FIXME//int pthread_yield (void);
 #endif
 
 #include "mito/Constants.h"
@@ -209,7 +211,7 @@ TimerQueue::~TimerQueue ()
 #else
 #ifdef VXWORKS
 #else
-    pthread_yield ();
+    //FIXME//pthread_yield ();
 #endif
 #endif
       }
